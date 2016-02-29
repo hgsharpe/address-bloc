@@ -1,11 +1,10 @@
 puts "Welcome to AddressBloc!"
 
- require_relative 'controllers/menu_controller'
+require_relative 'controllers/menu_controller'
 
- # #4
- menu = MenuController.new
- # #5
- system "clear"
- puts "Welcome to AddressBloc!"
- # #6
- menu.main_menu
+menu = MenuController.new
+
+system "clear"
+puts "Welcome to AddressBloc!"
+
+menu.main_menu

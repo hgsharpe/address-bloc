@@ -13,7 +13,8 @@ require_relative '../models/address_book'
      puts "2 - Create an entry"
      puts "3 - Search for an entry"
      puts "4 - Import entries from a CSV"
-     puts "5 - Exit"
+     puts "5 - View Entry n"
+     puts "6 - Exit"
      print "Enter your selection: "
  
      selection = gets.to_i
@@ -37,6 +38,10 @@ require_relative '../models/address_book'
        read_csv
        main_menu
      when 5
+      system "clear"
+      entry_n_submenu
+      main_menu
+     when 6
        puts "Good-bye!"
  # #8
        exit(0)
@@ -47,6 +52,21 @@ require_relative '../models/address_book'
        main_menu
      end
    end
+
+   def entry_n_submenu
+    print "Entry number to view: "
+    selection = gets.chomp.to_i
+
+    if selection < @address_book.entries.count
+      puts @address_book.entries[selection]
+      puts "Press enter to return to the main menu"
+      gets.chomp
+      system "clear"
+    else
+      puts "#{selection} is not a valis input"
+      entry_n_submenu
+    end
+  end
 
    def view_all_entries
    end
