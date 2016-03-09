@@ -94,4 +94,39 @@ RSpec.describe AddressBook do
       expect(entry_one.email).to eq "sussie@blocmail.com"
     end
   end
+
+  context "#import_from_entries_2.csv" do
+    it "imports the correct number of entries" do
+      book.import_from_csv("entries_2.csv")
+      
+      expect(book.entries.size).to eq 3
+    end
+
+    it "imports the 1st entry" do
+     book.import_from_csv('entries.csv')
+     entry_one = book.entries[0]
+
+     expect(entry_one.name).to eq "Bill"
+     expect(entry_one.phone_number).to eq "555-555-4854"
+     expect(entry_one.email).to eq "bill@blocmail.com"
+    end
+
+    it "imports the 2nd entry" do
+     book.import_from_csv('entries.csv')
+     entry_one = book.entries[1]
+
+     expect(entry_one.name).to eq "Bob"
+     expect(entry_one.phone_number).to eq "555-555-5415"
+     expect(entry_one.email).to eq "bob@blocmail.com"
+    end
+
+    it "imports the 3rd entry" do
+     book.import_from_csv('entries.csv')
+     entry_one = book.entries[2]
+
+     expect(entry_one.name).to eq "Joe"
+     expect(entry_one.phone_number).to eq "555-555-3660"
+     expect(entry_one.email).to eq "joe@blocmail.com"
+    end
+  end
 end
