@@ -1,14 +1,28 @@
+<<<<<<< HEAD
 require_relative "entry.rb"
+=======
+require_relative 'entry'
+require "csv"
+>>>>>>> 21-csvs
 
 class AddressBook
   attr_accessor :entries
 
   def initialize
+<<<<<<< HEAD
     @entries = []
   end
 
   def remove_entry(name, phone_number, email)
     delete_entry = nil
+=======
+     @entries = []
+  end
+
+  def add_entry(name, phone_number, email)
+   	 index = 0
+     entries.each do |entry|
+>>>>>>> 21-csvs
 
     @entries.each do |entry|
       if name == entry.name && phone == entry.phone_number && email == entry.email
@@ -24,9 +38,23 @@ class AddressBook
      if name < entry.name
        break
      end
+<<<<<<< HEAD
       index += 1
     end
 
     entries.insert(index, Entry.new(name, phone_number, email))
+=======
+     entries.insert(index, Entry.new(name, phone_number, email))
+  end
+
+  def import_from_csv(file_name)
+    csv_text = File.read(file_name)
+    csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
+    
+    csv.each do |row|
+      row_hash = row.to_hash
+      add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
+    end
+>>>>>>> 21-csvs
   end
 end
