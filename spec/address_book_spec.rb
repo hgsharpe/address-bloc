@@ -42,7 +42,6 @@ RSpec.describe AddressBook do
 
   context "#import_from_csv"  do
     it "imports the correct number of entries" do
-     
       book.import_from_csv("entries.csv")
       book_size = book.entries.size
      
@@ -79,7 +78,6 @@ RSpec.describe AddressBook do
     it "imports the 4th entry" do
       book.import_from_csv('entries.csv')
       entry_one = book.entries[3]
-
       expect(entry_one.name).to eq "Sally"
       expect(entry_one.phone_number).to eq "555-555-4646"
       expect(entry_one.email).to eq "sally@blocmail.com"
@@ -88,14 +86,51 @@ RSpec.describe AddressBook do
     it "imports the first entry" do
       book.import_from_csv('entries.csv')
       entry_one = book.entries[4]
-
       expect(entry_one.name).to eq "Sussie"
       expect(entry_one.phone_number).to eq "555-555-2036"
       expect(entry_one.email).to eq "sussie@blocmail.com"
     end
   end
   
-  describe "#binary_search" do
+  describe ".iterative_search" do
+    it "searches AddressBook for a non-existent entry" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Dan")
+      expect(entry).to be_nil
+    end
+    
+    it "searches AddressBook for Bill" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Bill")
+      expect(entry).to be_a Entry
+    end
+    
+    it "searches AddressBook for Bob" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Bob")
+      expect(entry).to be_a Entry
+    end
+    
+    it "searches AddressBook for Joe" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Joe")
+      expect(entry).to be_a Entry
+    end
+    
+    it "searches AddressBook for Sally" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Sally")
+      expect(entry).to be_a Entry
+    end
+    
+    it "searches AddressBook for Sussie" do
+      book.import_from_csv("entries.csv")
+      entry = book.iterative_search("Sussie")
+      expect(entry).to be_a Entry
+    end
+  end
+  
+  describe ".binary_search" do
     it "searches AddressBook for a non-existent entry" do
       book.import_from_csv("entries.csv")
       entry = book.binary_search("Dan")
