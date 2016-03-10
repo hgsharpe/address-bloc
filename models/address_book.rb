@@ -1,4 +1,4 @@
-require_relative 'entry'
+require_relative 'entry.rb'
 require "csv"
 
 class AddressBook
@@ -6,10 +6,6 @@ class AddressBook
 
   def initialize
     @entries = []
-  end
-
-  def remove_entry(name, phone_number, email)
-    delete_entry = nil
   end
 
   def add_entry(name, phone_number, email)
@@ -36,5 +32,21 @@ class AddressBook
   end
   
   def binary_search(name)
+    lower = 0
+    upper = entries.length - 1
+    while lower <= upper
+     
+     mid = (lower + upper) / 2
+     mid_name = entries[mid].name
+     
+     if name == mid_name
+       return entries[mid]
+     elsif name < mid_name
+       upper = mid - 1
+     elsif name > mid_name
+       lower = mid + 1
+     end
+    end 
+     return nil
   end
 end
